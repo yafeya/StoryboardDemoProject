@@ -72,6 +72,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\BaseViewModel.cs" />
+    <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,8 +90,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ElementProviders\GPIBLANINSTProvider.cs" />
+    <Compile Include="Models\ElementProviders\LANElementProvider.cs" />
+    <Compile Include="Models\ElementProviders\USBElementProvider.cs" />
+    <Compile Include="Models\ElementProviders\GPIBElementProvider.cs" />
     <Compile Include="Models\Extensions\ModelElementRepositoryExtensions.cs" />
+    <Compile Include="Models\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Models\IModelElementProvider.cs" />
     <Compile Include="Models\IModelElementRepository.cs" />
+    <Compile Include="Models\IMultiParentsINSTProvider.cs" />
+    <Compile Include="Models\MainModel.cs" />
     <Compile Include="Models\ModelElement.cs" />
     <Compile Include="Models\ModelElementRepository.cs" />
     <Compile Include="Models\ModelInstrument.cs" />
@@ -120,9 +130,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\INST.ico" />
     <Resource Include="Resources\INTF.ico" />

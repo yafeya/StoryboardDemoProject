@@ -7,17 +7,24 @@ namespace StoryboardDemo
 {
     public class ModelInstrument : ModelElement
     {
-        private IEnumerable<string> mSupportedInterfacesID;
+        private List<string> mParentIDList = new List<string>();
 
         public ModelInstrument()
         {
             Icon = KnownConsts.INSTRUMENT_ICON;
         }
 
-        public IEnumerable<string> SupportedInterfacesID 
+        public IEnumerable<string> SupportedInterfaceIDs
         {
-            get { return mSupportedInterfacesID; }
-            set { mSupportedInterfacesID = value; }
+            get { return mParentIDList; }
+        }
+
+        public void AddParentID(string parentID)
+        {
+            if (!mParentIDList.Contains(parentID))
+            {
+                mParentIDList.Add(parentID);
+            }
         }
     }
 }
