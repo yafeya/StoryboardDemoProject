@@ -30,7 +30,6 @@ C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\bin\Debug\j
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\bin\Debug\ko\System.Windows.Interactivity.resources.dll
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\bin\Debug\zh-Hans\System.Windows.Interactivity.resources.dll
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\bin\Debug\zh-Hant\System.Windows.Interactivity.resources.dll
-C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\StoryboardDemo.csprojResolveAssemblyReference.cache
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\MainWindow.baml
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\MainWindow.g.cs
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\App.g.cs

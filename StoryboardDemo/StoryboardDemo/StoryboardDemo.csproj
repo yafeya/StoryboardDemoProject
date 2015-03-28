@@ -72,8 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Extensions\ObjectExtensions.cs" />
+    <Compile Include="Models\IModelElementProvider.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
+    <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
+    <Compile Include="ViewModels\ModelInterfaceViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -95,8 +100,6 @@
     <Compile Include="Models\ElementProviders\USBElementProvider.cs" />
     <Compile Include="Models\ElementProviders\GPIBElementProvider.cs" />
     <Compile Include="Models\Extensions\ModelElementRepositoryExtensions.cs" />
-    <Compile Include="Models\Extensions\ObjectExtensions.cs" />
-    <Compile Include="Models\IModelElementProvider.cs" />
     <Compile Include="Models\IModelElementRepository.cs" />
     <Compile Include="Models\IMultiParentsINSTProvider.cs" />
     <Compile Include="Models\MainModel.cs" />
