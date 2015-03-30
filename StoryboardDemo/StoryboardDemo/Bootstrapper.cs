@@ -12,22 +12,25 @@ namespace StoryboardDemo
     {
         protected override DependencyObject CreateShell()
         {
+            InitializeRepository();
+            var model = new MainModel(Container);
             var shell = new MainWindow();
+            var mainViewModel = new MainViewModel(model);
+            shell.DataContext = mainViewModel;
             return shell;
         }
 
-        protected override void InitializeModules()
+        protected override void InitializeShell()
         {
-            base.InitializeModules();
-            InitializeRepository();
-            var model = new MainModel(Container);
-
+            base.InitializeShell();
+            var mainView = (MainWindow)Shell;
+            mainView.Show();
         }
 
         protected override IUnityContainer CreateContainer()
         {
             var container = base.CreateContainer();
-            container.RegisterType<IModelElementRepository, ModelElementRepository>();
+            container.RegisterType<IModelElementRepository, ModelElementRepository>(new ContainerControlledLifetimeManager());
             return container;
         }
 
