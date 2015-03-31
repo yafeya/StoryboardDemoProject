@@ -6,32 +6,76 @@
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="32"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Image Source="{Binding Icon}"/>
-                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="1"/>
-                </Grid>
+                <Border>
+                    <Border.Style>
+                        <Style>
+                            <Setter Property="Border.BorderBrush" Value="Transparent"/>
+                            <Style.Triggers>
+                                <Trigger Property="Border.IsMouseOver" Value="True">
+                                    <Setter Property="Border.BorderBrush" Value="SlateBlue"/>
+                                    <Setter Property="Border.BorderThickness" Value="2"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid Height="64">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="64"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="{Binding Icon}"/>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="1"/>
+                        <CheckBox IsChecked="{Binding IsSelected}" Margin="5" Grid.Column="2">
+                            <CheckBox.Style>
+                                <Style>
+                                    <Setter Property="CheckBox.Opacity" Value="0"/>
+                                    <Style.Triggers>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="CheckBox.IsMouseOver" Value="true"/>
+                                                <Condition Property="CheckBox.IsChecked" Value="false"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="CheckBox.Opacity" Value="100"/>
+                                        </MultiTrigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="CheckBox.IsMouseOver" Value="false"/>
+                                                <Condition Property="CheckBox.IsChecked" Value="true"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="CheckBox.Opacity" Value="100"/>
+                                        </MultiTrigger>
+                                        <MultiTrigger>
+                                            <MultiTrigger.Conditions>
+                                                <Condition Property="CheckBox.IsMouseOver" Value="true"/>
+                                                <Condition Property="CheckBox.IsChecked" Value="true"/>
+                                            </MultiTrigger.Conditions>
+                                            <Setter Property="CheckBox.Opacity" Value="100"/>
+                                        </MultiTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </CheckBox.Style>
+                        </CheckBox>
+                    </Grid>
+                </Border>
             </DataTemplate>
             <DataTemplate DataType="{x:Type local:ModelInterfaceViewModel}">
                 <Expander Header="{Binding Name}" ExpandDirection="Down">
-                    <ListView ItemsSource="{Binding Children}" SelectedItem="{Binding SelectedInstrument}" Width="240"/>
+                    <ListView ItemsSource="{Binding Children}" SelectedItem="{Binding SelectedInstrument}" HorizontalContentAlignment="Stretch"/>
                 </Expander>
             </DataTemplate>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" MaxWidth="480"/>
             <ColumnDefinition Width="4"/>
-            <ColumnDefinition Width="360"/>
+            <ColumnDefinition Width="360" />
         </Grid.ColumnDefinitions>
         <TabControl>
             <TabItem Header="Flat">
-                <ListView ItemsSource="{Binding FlatInstruments}" SelectedItem="{Binding SelectedInstrument}"/>
+                <ListView ItemsSource="{Binding FlatInstruments}" HorizontalContentAlignment="Stretch" SelectedItem="{Binding SelectedInstrument}"/>
             </TabItem>
             <TabItem Header="Umbrella">
-                <ListView ItemsSource="{Binding UmbrellaInterfaces}"/>
+                <ListView ItemsSource="{Binding UmbrellaInterfaces}" HorizontalContentAlignment="Stretch"/>
             </TabItem>
         </TabControl>
         <GridSplitter Grid.Column="1" 
