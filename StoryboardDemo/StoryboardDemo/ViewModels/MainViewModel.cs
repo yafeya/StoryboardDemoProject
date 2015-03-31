@@ -41,20 +41,21 @@ namespace StoryboardDemo
         {
             //ToDo: Initialize the data.
             var instruments = mModel.GetModelElements().Where(e => e is ModelInstrument).Select(e => new ModelInstrumentViewModel((ModelInstrument)e)).OrderBy(e => e.Name);
-            var interfaces = mModel.GetModelElements().Where(e => e is ModelInterface).Select(e =>
-                {
-                    var interfaceViewModel = new ModelInterfaceViewModel((ModelInterface)e);
-                    var children = instruments.Where(i => i.GetParentIDs().Contains(e.PersistentID));
-                    foreach (var child in children)
-                    {
-                        interfaceViewModel.Children.Add(child);
-                    }
-                    return interfaceViewModel;
-                });
             foreach (var instrument in instruments)
             {
                 FlatInstruments.Add(instrument);
             }
+
+            var interfaces = mModel.GetModelElements().Where(e => e is ModelInterface).Select(e =>
+            {
+                var interfaceViewModel = new ModelInterfaceViewModel((ModelInterface)e);
+                var children = FlatInstruments.Where(i => i.GetParentIDs().Contains(e.PersistentID));
+                foreach (var child in children)
+                {
+                    interfaceViewModel.Children.Add(child);
+                }
+                return interfaceViewModel;
+            });
             foreach (var intf in interfaces)
             {
                 UmbrellaInterfaces.Add(intf);

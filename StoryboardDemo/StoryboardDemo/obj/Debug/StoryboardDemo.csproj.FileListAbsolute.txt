@@ -39,3 +39,6 @@ C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\S
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\StoryboardDemo.csproj.GenerateResource.Cache
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\StoryboardDemo.exe
 C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\StoryboardDemo.pdb
+C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\StoryboardDemo_MarkupCompile.lref
+C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\yafeya\GitHub\StoryboardDemoProject\StoryboardDemo\StoryboardDemo\obj\Debug\GeneralTemplates.baml

@@ -3,68 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:StoryboardDemo"
         Title="MainWindow" Height="480" Width="640">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="GeneralStyles.xaml"/>
+                <ResourceDictionary Source="GeneralTemplates.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <Grid.Resources>
-            <DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">
-                <Border>
-                    <Border.Style>
-                        <Style>
-                            <Setter Property="Border.BorderBrush" Value="Transparent"/>
-                            <Style.Triggers>
-                                <Trigger Property="Border.IsMouseOver" Value="True">
-                                    <Setter Property="Border.BorderBrush" Value="SlateBlue"/>
-                                    <Setter Property="Border.BorderThickness" Value="2"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Border.Style>
-                    <Grid Height="64">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="32"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="64"/>
-                        </Grid.ColumnDefinitions>
-                        <Image Source="{Binding Icon}"/>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="1"/>
-                        <CheckBox IsChecked="{Binding IsSelected}" Margin="5" Grid.Column="2">
-                            <CheckBox.Style>
-                                <Style>
-                                    <Setter Property="CheckBox.Opacity" Value="0"/>
-                                    <Style.Triggers>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="CheckBox.IsMouseOver" Value="true"/>
-                                                <Condition Property="CheckBox.IsChecked" Value="false"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="CheckBox.Opacity" Value="100"/>
-                                        </MultiTrigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="CheckBox.IsMouseOver" Value="false"/>
-                                                <Condition Property="CheckBox.IsChecked" Value="true"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="CheckBox.Opacity" Value="100"/>
-                                        </MultiTrigger>
-                                        <MultiTrigger>
-                                            <MultiTrigger.Conditions>
-                                                <Condition Property="CheckBox.IsMouseOver" Value="true"/>
-                                                <Condition Property="CheckBox.IsChecked" Value="true"/>
-                                            </MultiTrigger.Conditions>
-                                            <Setter Property="CheckBox.Opacity" Value="100"/>
-                                        </MultiTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </CheckBox.Style>
-                        </CheckBox>
-                    </Grid>
-                </Border>
-            </DataTemplate>
-            <DataTemplate DataType="{x:Type local:ModelInterfaceViewModel}">
-                <Expander Header="{Binding Name}" ExpandDirection="Down">
-                    <ListView ItemsSource="{Binding Children}" SelectedItem="{Binding SelectedInstrument}" HorizontalContentAlignment="Stretch"/>
-                </Expander>
-            </DataTemplate>
-        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" MaxWidth="480"/>
             <ColumnDefinition Width="4"/>

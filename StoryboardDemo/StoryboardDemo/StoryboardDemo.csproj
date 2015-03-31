@@ -79,6 +79,14 @@
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
     <Compile Include="ViewModels\ModelInterfaceViewModel.cs" />
+    <Resource Include="GeneralStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Resource>
+    <Page Include="GeneralTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,7 +141,10 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\pinned.ico" />
+    <Resource Include="Resources\unpinned.ico" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\INST.ico" />
     <Resource Include="Resources\INTF.ico" />

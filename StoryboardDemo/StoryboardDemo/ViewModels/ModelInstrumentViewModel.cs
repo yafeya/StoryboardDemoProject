@@ -25,13 +25,25 @@ namespace StoryboardDemo
 
         public bool IsSelected
         {
-            get { return mIsSelected; }
+            get { return ModelInstrument.IsNeedRescanning; }
             set
             {
-                if (mIsSelected != value)
+                if (ModelInstrument.IsNeedRescanning != value)
                 {
-                    mIsSelected = value;
+                    ModelInstrument.IsNeedRescanning = value;
                     OnPropertyChanged("IsSelected");
+                }
+            }
+        }
+        public bool IsPinned
+        {
+            get { return ModelInstrument.IsPinned; }
+            set
+            {
+                if (ModelInstrument.IsPinned != value)
+                {
+                    ModelInstrument.IsPinned = value;
+                    OnPropertyChanged("IsPinned");
                 }
             }
         }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/inst.ico")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/intf.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/pinned.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/unpinned.ico")]
 
 
