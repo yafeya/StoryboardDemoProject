@@ -15,7 +15,14 @@
                 </Grid.ColumnDefinitions>
                 <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
                 <Image Source="{Binding Icon}" Grid.Row="1" VerticalAlignment="Center" Grid.Column="1"/>
-                <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="2"/>
+                <Grid  Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                    <ItemsControl ItemsSource="{Binding Addresses}" Grid.Row="1"/>
+                </Grid>
                 <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" Grid.Column="3"/>
             </Grid>
         </Border>
@@ -25,5 +32,9 @@
         <Expander Header="{Binding Name}" ExpandDirection="Down">
             <ListView ItemsSource="{Binding Children}" SelectedItem="{Binding SelectedInstrument}" HorizontalContentAlignment="Stretch"/>
         </Expander>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type local:AddressViewModel}">
+        <TextBlock Margin="1" Text="{Binding Address}"/>
     </DataTemplate>
 </ResourceDictionary>

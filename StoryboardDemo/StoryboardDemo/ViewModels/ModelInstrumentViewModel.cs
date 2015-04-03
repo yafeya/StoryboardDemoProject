@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -7,15 +8,26 @@ namespace StoryboardDemo
 {
     public class ModelInstrumentViewModel : ModelElementViewModel
     {
-        private bool mIsSelected = false;
+        private ObservableCollection<AddressViewModel> mAddresses = new ObservableCollection<AddressViewModel>();
 
         public ModelInstrumentViewModel(ModelInstrument model)
             : base(model)
-        { }
+        {
+            foreach (var address in model.Addresses)
+            {
+                var addressViewModel = new AddressViewModel(address);
+                Addresses.Add(addressViewModel);
+            }
+        }
 
         private ModelInstrument ModelInstrument
         {
             get { return mModel as ModelInstrument; }
+        }
+
+        public ObservableCollection<AddressViewModel> Addresses
+        {
+            get { return mAddresses; }
         }
 
         public IEnumerable<string> GetParentIDs()

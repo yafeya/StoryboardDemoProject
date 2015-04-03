@@ -72,9 +72,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Models\Address.cs" />
     <Compile Include="Models\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\IModelElementProvider.cs" />
+    <Compile Include="Models\WorkStatus.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
+    <Compile Include="ViewModels\AddressViewModel.cs" />
+    <Compile Include="ViewModels\AppConfigViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
@@ -148,6 +152,10 @@
   <ItemGroup>
     <Resource Include="Resources\INST.ico" />
     <Resource Include="Resources\INTF.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\broken.ico" />
+    <Resource Include="Resources\good.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

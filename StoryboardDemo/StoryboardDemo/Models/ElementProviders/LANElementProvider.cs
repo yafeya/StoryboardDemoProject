@@ -13,10 +13,10 @@ namespace StoryboardDemo
         {
             var elementList = new List<ModelElement>();
             var intf = new ModelInterface { Name = "LAN" };
-            var inst1 = new ModelInstrument { Name = "LANInstrument1" };
-            var inst2 = new ModelInstrument { Name = "LANInstrument2" };
-            var inst3 = new ModelInstrument { Name = "LANInstrument3" };
-            var inst4 = new ModelInstrument { Name = "LANInstrument4" };
+            var inst1 = new ModelInstrument { Name = "LANInstrument1", Addresses = new[] { new Address("TCPIP0::INSTR1") } };
+            var inst2 = new ModelInstrument { Name = "LANInstrument2", Addresses = new[] { new Address("TCPIP0::INSTR2") } };
+            var inst3 = new ModelInstrument { Name = "LANInstrument3", Addresses = new[] { new Address("TCPIP0::INSTR3") } };
+            var inst4 = new ModelInstrument { Name = "LANInstrument4", Addresses = new[] { new Address("TCPIP0::INSTR4") } };
 
             inst1.AddParentID(intf.PersistentID);
             inst2.AddParentID(intf.PersistentID);

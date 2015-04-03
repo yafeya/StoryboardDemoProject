@@ -25,7 +25,8 @@ namespace StoryboardDemo
 
             if (gpibIntf != null && lanIntf != null)
             {
-                var inst = new ModelInstrument { Name = "GPIB/LAN Instrument1" };
+                var inst = new ModelInstrument { Name = "GPIB/LAN Instrument1", 
+                    Addresses = new[] { new Address("GPIB0::INSTRX"), new Address("TCPIP0::INSTRX") } };
                 inst.AddParentID(gpibIntf.PersistentID);
                 inst.AddParentID(lanIntf.PersistentID);
                 insts = new ModelInstrument[] { inst };

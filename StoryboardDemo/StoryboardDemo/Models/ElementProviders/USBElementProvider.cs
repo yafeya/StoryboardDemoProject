@@ -13,11 +13,11 @@ namespace StoryboardDemo
         {
             var elementList = new List<ModelElement>();
             var intf = new ModelInterface { Name = "USB" };
-            var inst1 = new ModelInstrument { Name = "USBInstrument1" };
-            var inst2 = new ModelInstrument { Name = "USBInstrument2" };
-            var inst3 = new ModelInstrument { Name = "USBInstrument3" };
-            var inst4 = new ModelInstrument { Name = "USBInstrument4" };
-            var inst5 = new ModelInstrument { Name = "USBInstrument5" };
+            var inst1 = new ModelInstrument { Name = "USBInstrument1", Addresses = new[] { new Address("USB0::INSTR1") } };
+            var inst2 = new ModelInstrument { Name = "USBInstrument2", Addresses = new[] { new Address("USB0::INSTR2") } };
+            var inst3 = new ModelInstrument { Name = "USBInstrument3", Addresses = new[] { new Address("USB0::INSTR3") } };
+            var inst4 = new ModelInstrument { Name = "USBInstrument4", Addresses = new[] { new Address("USB0::INSTR4") } };
+            var inst5 = new ModelInstrument { Name = "USBInstrument5", Addresses = new[] { new Address("USB0::INSTR5") } };
 
             inst1.AddParentID(intf.PersistentID);
             inst2.AddParentID(intf.PersistentID);

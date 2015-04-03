@@ -13,10 +13,10 @@ namespace StoryboardDemo
         {
             var elementList = new List<ModelElement>();
             var intf = new ModelInterface { Name = "GPIB" };
-            var inst1 = new ModelInstrument { Name = "GPIBInstrument1" };
-            var inst2 = new ModelInstrument { Name = "GPIBInstrument2" };
-            var inst3 = new ModelInstrument { Name = "GPIBInstrument3" };
-            var inst4 = new ModelInstrument { Name = "GPIBInstrument4" };
+            var inst1 = new ModelInstrument { Name = "GPIBInstrument1", Addresses = new[] { new Address("GPIB0::INSTR1") } };
+            var inst2 = new ModelInstrument { Name = "GPIBInstrument2", Addresses = new[] { new Address("GPIB0::INSTR2") } };
+            var inst3 = new ModelInstrument { Name = "GPIBInstrument3", Addresses = new[] { new Address("GPIB0::INSTR3") } };
+            var inst4 = new ModelInstrument { Name = "GPIBInstrument4", Addresses = new[] { new Address("GPIB0::INSTR4") } };
 
             inst1.AddParentID(intf.PersistentID);
             inst2.AddParentID(intf.PersistentID);
