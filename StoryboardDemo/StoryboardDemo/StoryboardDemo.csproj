@@ -83,6 +83,7 @@
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
     <Compile Include="ViewModels\ModelInterfaceViewModel.cs" />
+    <Compile Include="VisibilityConverter.cs" />
     <Resource Include="GeneralStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,6 +157,10 @@
   <ItemGroup>
     <Resource Include="Resources\broken.ico" />
     <Resource Include="Resources\good.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\collapse.ico" />
+    <Resource Include="Resources\expand.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

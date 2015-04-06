@@ -38,6 +38,26 @@
         </Style.Triggers>
     </Style>
     
+    <Style x:Key="checkboxCollapse" TargetType="{x:Type CheckBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Grid>
+                        <Image x:Name="imgContent" Height="16" Source="pack://application:,,,/Resources/collapse.ico"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="CheckBox.IsChecked" Value="true">
+                            <Setter TargetName="imgContent" Property="Source" Value="pack://application:,,,/Resources/expand.ico"/>
+                        </Trigger>
+                        <Trigger Property="CheckBox.IsChecked" Value="false">
+                            <Setter TargetName="imgContent" Property="Source" Value="pack://application:,,,/Resources/collapse.ico"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="checkboxPin" TargetType="{x:Type CheckBox}">
         <Setter Property="Template">
             <Setter.Value>

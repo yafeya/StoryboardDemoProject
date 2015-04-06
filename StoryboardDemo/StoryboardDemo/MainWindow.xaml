@@ -41,7 +41,10 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Image Source="{Binding Icon}"/>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" Grid.Column="1"/>
+                        <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center" >
+                            <TextBlock Text="{Binding Name}" />
+                            <ItemsControl ItemsSource="{Binding Addresses}" />
+                        </StackPanel>
                     </Grid>
                 </ContentControl>
             </Grid>

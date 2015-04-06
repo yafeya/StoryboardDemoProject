@@ -16,12 +16,24 @@
                 <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
                 <Image Source="{Binding Icon}" Grid.Row="1" VerticalAlignment="Center" Grid.Column="1"/>
                 <Grid  Grid.Column="2">
+                    <Grid.Resources>
+                        <local:VisibilityConverter x:Key="visibilityConverter"/>
+                    </Grid.Resources>
                     <Grid.RowDefinitions>
+                        <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                    <ItemsControl ItemsSource="{Binding Addresses}" Grid.Row="1"/>
+                    <StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Top">
+                        <TextBlock Text="{Binding PrimaryAddress.Address}" />
+                        <CheckBox x:Name="chkCollapse" 
+                                  Visibility="{Binding IsAddressExpandable, Converter={StaticResource visibilityConverter}}"
+                                  Style="{StaticResource checkboxCollapse}"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding RestAddresses}" 
+                                  Visibility="{Binding IsChecked, ElementName=chkCollapse, Converter={StaticResource visibilityConverter}}"
+                                  Grid.Row="2"/>
                 </Grid>
                 <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" Grid.Column="3"/>
             </Grid>

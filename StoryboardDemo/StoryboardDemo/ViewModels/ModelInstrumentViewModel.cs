@@ -8,15 +8,29 @@ namespace StoryboardDemo
 {
     public class ModelInstrumentViewModel : ModelElementViewModel
     {
+        private AddressViewModel mPrimaryAddress;
+        private ObservableCollection<AddressViewModel> mRestAddresses = new ObservableCollection<AddressViewModel>();
         private ObservableCollection<AddressViewModel> mAddresses = new ObservableCollection<AddressViewModel>();
+        private bool mIsAddressExpandable = false;
 
         public ModelInstrumentViewModel(ModelInstrument model)
             : base(model)
         {
-            foreach (var address in model.Addresses)
+            var primaryAddress = model.Addresses.FirstOrDefault();
+            if (primaryAddress != null)
             {
-                var addressViewModel = new AddressViewModel(address);
-                Addresses.Add(addressViewModel);
+                mPrimaryAddress = new AddressViewModel(primaryAddress);
+                Addresses.Add(PrimaryAddress);
+
+                var restAddresses = model.Addresses.Except(new[] { primaryAddress });
+                foreach (var address in restAddresses)
+                {
+                    var addressViewModel = new AddressViewModel(address);
+                    RestAddresses.Add(addressViewModel);
+                    Addresses.Add(addressViewModel);
+                }
+
+                IsAddressExpandable = RestAddresses.Count > 0;
             }
         }
 
@@ -24,15 +38,38 @@ namespace StoryboardDemo
         {
             get { return mModel as ModelInstrument; }
         }
-
+        public IEnumerable<string> GetParentIDs()
+        {
+            return ModelInstrument.SupportedInterfaceIDs;
+        }
+        public AddressViewModel PrimaryAddress
+        {
+            get { return mPrimaryAddress; }
+            set
+            {
+                mPrimaryAddress = value;
+                OnPropertyChanged("PrimaryAddress");
+            }
+        }
+        public ObservableCollection<AddressViewModel> RestAddresses
+        {
+            get { return mRestAddresses; }
+        }
         public ObservableCollection<AddressViewModel> Addresses
         {
             get { return mAddresses; }
         }
-
-        public IEnumerable<string> GetParentIDs()
+        public bool IsAddressExpandable
         {
-            return ModelInstrument.SupportedInterfaceIDs;
+            get { return mIsAddressExpandable; }
+            set
+            {
+                if (mIsAddressExpandable != value)
+                {
+                    mIsAddressExpandable = value;
+                    OnPropertyChanged("AddressExpandable");
+                }
+            }
         }
 
         public bool IsSelected
