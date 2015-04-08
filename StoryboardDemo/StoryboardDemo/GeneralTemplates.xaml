@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:StoryboardDemo">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="GeneralStyles.xaml"/>
+        <ResourceDictionary Source="GeneralConverters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">
         <Border Style="{StaticResource styleBorderAutoDisplay}">
@@ -13,7 +14,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="32"/>
                 </Grid.ColumnDefinitions>
-                <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
+                <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=StickyMode, Converter={StaticResource pinVisibilityConverter}}">
+                    <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
+                </StackPanel>
                 <Image Source="{Binding Icon}" Grid.Row="1" VerticalAlignment="Center" Grid.Column="1"/>
                 <Grid  Grid.Column="2">
                     <Grid.Resources>
@@ -35,7 +38,9 @@
                                   Visibility="{Binding IsChecked, ElementName=chkCollapse, Converter={StaticResource visibilityConverter}}"
                                   Grid.Row="2"/>
                 </Grid>
-                <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" Grid.Column="3"/>
+                <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="3">
+                    <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
+                </StackPanel>
             </Grid>
         </Border>
     </DataTemplate>

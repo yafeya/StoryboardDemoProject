@@ -54,6 +54,7 @@
       <HintPath>PrismReferences\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,7 +79,7 @@
     <Compile Include="Models\WorkStatus.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
-    <Compile Include="ViewModels\AppConfigViewModel.cs" />
+    <Compile Include="Utilities\AppConfigViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
@@ -88,6 +89,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Resource>
+    <Page Include="GeneralConverters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GeneralTemplates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

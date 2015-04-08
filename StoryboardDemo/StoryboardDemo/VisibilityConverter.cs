@@ -30,4 +30,50 @@ namespace StoryboardDemo
 
         #endregion
     }
+
+    public class PinVisibilityConverter : IValueConverter
+    {
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Visibility visibility = Visibility.Collapsed;
+            if (value is StickyMode)
+            {
+                var stickyMode = (StickyMode)value;
+                visibility = stickyMode == StickyMode.Pin ? Visibility.Visible : Visibility.Collapsed;
+            }
+            return visibility;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
+
+    public class RescanCheckVisibilityConverter : IValueConverter
+    {
+        #region IValueConverter Members
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Visibility visibility = Visibility.Collapsed;
+            if (value is RescanMode)
+            {
+                var rescanMode = (RescanMode)value;
+                visibility = rescanMode == RescanMode.Checking? Visibility.Visible : Visibility.Collapsed;
+            }
+            return visibility;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+    }
 }
