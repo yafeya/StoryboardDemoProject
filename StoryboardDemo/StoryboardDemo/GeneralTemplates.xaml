@@ -5,7 +5,8 @@
         <ResourceDictionary Source="GeneralStyles.xaml"/>
         <ResourceDictionary Source="GeneralConverters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
-    <DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">
+    <!--<DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">-->
+    <DataTemplate x:Key="entireInstrumentView" DataType="{x:Type local:ModelInstrumentViewModel}">
         <Border Style="{StaticResource styleBorderAutoDisplay}">
             <Grid Height="64">
                 <Grid.ColumnDefinitions>
@@ -44,14 +45,72 @@
             </Grid>
         </Border>
     </DataTemplate>
+    
+    <DataTemplate x:Key="condenseInstrumentView" DataType="{x:Type local:ModelInstrumentViewModel}">
+        <Border Style="{StaticResource styleBorderAutoDisplay}">
+            <Grid Height="64">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="32"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=StickyMode, Converter={StaticResource pinVisibilityConverter}}">
+                    <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
+                </StackPanel>
+                <Grid  Grid.Column="1">
+                    <Grid.Resources>
+                        <local:VisibilityConverter x:Key="visibilityConverter"/>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        <TextBlock Text=", " VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding PrimaryAddress.Address}" />
+                        <CheckBox x:Name="chkCollapse" 
+                                  Visibility="{Binding IsAddressExpandable, Converter={StaticResource visibilityConverter}}"
+                                  Style="{StaticResource checkboxCollapse}"/>
+                    </StackPanel>
+                    <ItemsControl ItemsSource="{Binding RestAddresses}" 
+                                  Visibility="{Binding IsChecked, ElementName=chkCollapse, Converter={StaticResource visibilityConverter}}"
+                                  Grid.Row="1"/>
+                </Grid>
+                <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="2">
+                    <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <Style x:Key="instrumentStyle" TargetType="{x:Type ListView}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=InstrumentMode.Item}"
+                         Value="Entire">
+                <Setter Property="ItemTemplate" Value="{StaticResource entireInstrumentView}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=InstrumentMode.Item}"
+                         Value="Condense">
+                <Setter Property="ItemTemplate" Value="{StaticResource condenseInstrumentView}"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
 
     <DataTemplate DataType="{x:Type local:ModelInterfaceViewModel}">
         <Expander Header="{Binding Name}" ExpandDirection="Down">
-            <ListView ItemsSource="{Binding Children}" SelectedItem="{Binding SelectedInstrument}" HorizontalContentAlignment="Stretch"/>
+            <ListView ItemsSource="{Binding Children}" 
+                      Style="{StaticResource instrumentStyle}"
+                      SelectedItem="{Binding SelectedInstrument}" 
+                      HorizontalContentAlignment="Stretch"/>
         </Expander>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type local:AddressViewModel}">
         <TextBlock Margin="1" Text="{Binding Address}"/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type local:EnumItemViewModel}">
+        <Image Source="{Binding Icon}"/>
     </DataTemplate>
 </ResourceDictionary>

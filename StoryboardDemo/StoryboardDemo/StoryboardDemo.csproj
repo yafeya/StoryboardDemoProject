@@ -79,12 +79,14 @@
     <Compile Include="Models\WorkStatus.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
-    <Compile Include="Utilities\AppConfigViewModel.cs" />
+    <Compile Include="Utilities\AppConfigManager.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ModelElementViewModel.cs" />
     <Compile Include="ViewModels\ModelInstrumentViewModel.cs" />
     <Compile Include="ViewModels\ModelInterfaceViewModel.cs" />
-    <Compile Include="VisibilityConverter.cs" />
+    <Compile Include="ViewUtilities\EnumItemViewModel.cs" />
+    <Compile Include="ViewUtilities\InstrumentViewMode.cs" />
+    <Compile Include="ViewUtilities\VisibilityConverter.cs" />
     <Resource Include="GeneralStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,6 +168,10 @@
   <ItemGroup>
     <Resource Include="Resources\collapse.ico" />
     <Resource Include="Resources\expand.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\condense.ico" />
+    <Resource Include="Resources\entire.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
