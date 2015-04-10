@@ -74,8 +74,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\StatusManager\AddressStatusManager.cs" />
     <Compile Include="Models\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\IModelElementProvider.cs" />
+    <Compile Include="Models\StatusManager\AddressStatusPolicy.cs" />
+    <Compile Include="Models\StatusManager\BrokenFileAddressStatusPolicy.cs" />
+    <Compile Include="Models\StatusManager\IAddressStatusManager.cs" />
     <Compile Include="Models\WorkStatus.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
@@ -172,6 +176,14 @@
   <ItemGroup>
     <Resource Include="Resources\condense.ico" />
     <Resource Include="Resources\entire.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="MockData\BrokenAddresses.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\refresh.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

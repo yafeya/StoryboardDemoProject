@@ -28,20 +28,23 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <ComboBox x:Name="comboInstrumentMode"
+                <StackPanel Orientation="Horizontal">
+                    <ComboBox x:Name="comboInstrumentMode"
                           ItemsSource="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=InstrumentModeItems.Items}" 
                           SelectedValue="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=InstrumentMode}" 
                           HorizontalAlignment="Left"
                           VerticalContentAlignment="Center"
-                          Width="54" Height="36">
-                    <ComboBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ComboBoxItem}">
-                            <Setter Property="Width" Value="32"/>
-                            <Setter Property="Height" Value="32"/>
-                            <Setter Property="HorizontalAlignment" Value="Left"/>
-                        </Style>
-                    </ComboBox.ItemContainerStyle>
-                </ComboBox>
+                          Width="48" Height="34" Margin="3">
+                        <ComboBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ComboBoxItem}">
+                                <Setter Property="Width" Value="32"/>
+                                <Setter Property="Height" Value="32"/>
+                                <Setter Property="HorizontalAlignment" Value="Left"/>
+                            </Style>
+                        </ComboBox.ItemContainerStyle>
+                    </ComboBox>
+                    <Button Content="Rescan" Margin="3" Width="48" Command="{Binding RescanCommand}"/>
+                </StackPanel>
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="320" MaxWidth="480"/>
@@ -51,9 +54,10 @@
                     <TabControl>
                         <TabItem Header="Flat">
                             <ListView ItemsSource="{Binding FlatInstruments}" 
-                                          Style="{StaticResource instrumentStyle}"
-                                          HorizontalContentAlignment="Stretch" 
-                                          SelectedItem="{Binding SelectedInstrument}"/>
+                                      Style="{StaticResource instrumentStyle}"
+                                      HorizontalContentAlignment="Stretch" 
+                                      SelectedItem="{Binding SelectedInstrument}"
+                                      AlternationCount="2"/>
                         </TabItem>
                         <TabItem Header="Umbrella">
                             <!--<ListView ItemsSource="{Binding UmbrellaInterfaces}" HorizontalContentAlignment="Stretch"/>-->

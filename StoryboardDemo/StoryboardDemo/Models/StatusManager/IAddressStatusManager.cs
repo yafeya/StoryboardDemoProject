@@ -5,11 +5,8 @@ using System.Text;
 
 namespace StoryboardDemo
 {
-    public enum WorkStatus
+    public interface IAddressStatusManager
     {
-        Good,
-        Broken,
-        Refreshing,
-        Question
+        void RefreshStatus(IEnumerable<Address> addresses);
     }
 }

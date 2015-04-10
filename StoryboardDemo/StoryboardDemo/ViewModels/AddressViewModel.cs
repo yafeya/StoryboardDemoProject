@@ -51,5 +51,10 @@ namespace StoryboardDemo
                 }
             }
         }
+
+        public Address GetAddressModel()
+        {
+            return mModel;
+        }
     }
 }

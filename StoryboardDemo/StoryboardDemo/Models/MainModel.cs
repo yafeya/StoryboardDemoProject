@@ -15,6 +15,11 @@ namespace StoryboardDemo
             mContainer = container;
         }
 
+        public IUnityContainer Container
+        {
+            get { return mContainer; }
+        }
+
         private IModelElementRepository ModelElementRepository
         {
             get

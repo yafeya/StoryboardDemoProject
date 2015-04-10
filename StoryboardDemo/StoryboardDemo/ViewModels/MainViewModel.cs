@@ -4,19 +4,25 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
+using Microsoft.Practices.Prism.Commands;
+using Microsoft.Practices.Unity;
 
 namespace StoryboardDemo
 {
     public class MainViewModel : ModelViewModel<MainModel>
     {
+        private IUnityContainer mContainer;
         private ObservableCollection<ModelInstrumentViewModel> mFlatInstruments = new ObservableCollection<ModelInstrumentViewModel>();
         private ObservableCollection<ModelInterfaceViewModel> mUmbrellaInterfaces = new ObservableCollection<ModelInterfaceViewModel>();
         private ModelInstrumentViewModel mSelectedInstrument = null;
+        private ICommand mRescanCommand;
 
         public MainViewModel(MainModel model)
             : base(model)
         {
             Initialize();
+            mContainer = model.Container;
         }
 
         public ObservableCollection<ModelInstrumentViewModel> FlatInstruments
@@ -34,6 +40,27 @@ namespace StoryboardDemo
             {
                 mSelectedInstrument = value;
                 OnPropertyChanged("SelectedInstrument");
+            }
+        }
+        public ICommand RescanCommand
+        {
+            get
+            {
+                if (mRescanCommand == null)
+                {
+                    mRescanCommand = new DelegateCommand(() => 
+                    {
+                        var statusManager = mContainer.Resolve<IAddressStatusManager>();
+                        var addressList = new List<Address>();
+                        foreach (var instrument in mFlatInstruments)
+                        {
+                            var addresses = instrument.Addresses.Select(a => a.GetAddressModel());
+                            addressList.AddRange(addresses);
+                        }
+                        statusManager.RefreshStatus(addressList);
+                    });
+                }
+                return mRescanCommand;
             }
         }
 

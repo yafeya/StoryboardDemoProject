@@ -95,8 +95,15 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style x:Key="instrumentModeCombobox" TargetType="{x:Type ComboBox}">
-        
+
+    <Style TargetType="ListViewItem">
+        <Style.Triggers>
+            <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                <Setter Property="Background" Value="White" />
+            </Trigger>
+            <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                <Setter Property="Background" Value="Wheat" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

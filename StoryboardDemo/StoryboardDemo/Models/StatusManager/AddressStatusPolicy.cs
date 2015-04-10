@@ -5,11 +5,8 @@ using System.Text;
 
 namespace StoryboardDemo
 {
-    public enum WorkStatus
+    public abstract class AddressStatusPolicy
     {
-        Good,
-        Broken,
-        Refreshing,
-        Question
+        public abstract WorkStatus GetStatus(Address address);
     }
 }
