@@ -56,6 +56,8 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -83,6 +85,10 @@
     <Compile Include="Models\StatusManager\IAddressStatusManager.cs" />
     <Compile Include="Models\WorkStatus.cs" />
     <Compile Include="Utilities\BaseViewModel.cs" />
+    <Compile Include="Utilities\CircularProgressBar.xaml.cs">
+      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\WindowsProgressRing.cs" />
     <Compile Include="ViewModels\AddressViewModel.cs" />
     <Compile Include="Utilities\AppConfigManager.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
@@ -93,6 +99,14 @@
     <Compile Include="ViewUtilities\InstrumentViewMode.cs" />
     <Compile Include="ViewUtilities\VisibilityConverter.cs" />
     <Compile Include="ViewUtilities\WorkStatusConverter.cs" />
+    <Page Include="Utilities\CircularProgressBar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Utilities\WindowsProgressRingStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Resource Include="GeneralStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

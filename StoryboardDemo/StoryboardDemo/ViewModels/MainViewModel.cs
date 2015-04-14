@@ -50,10 +50,9 @@ namespace StoryboardDemo
             {
                 if (mRescanCommand == null)
                 {
-                    mRescanCommand = new DelegateCommand(() => 
+                    mRescanCommand = new DelegateCommand(() =>
                     {
                         BeginRefresh();
-                        var task = new Task(() => { });
                         Action handler = () =>
                         {
                             var statusManager = mContainer.Resolve<IAddressStatusManager>();
@@ -65,7 +64,7 @@ namespace StoryboardDemo
                             }
                             statusManager.RefreshStatus(addressList);
                             mContainer.RefreshInstruments();
-                            Thread.Sleep(1500);
+                            Thread.Sleep(2500);
                         };
                         Action<IAsyncResult> callbackHandler = r => EndRefresh();
                         var callback = new AsyncCallback(callbackHandler);

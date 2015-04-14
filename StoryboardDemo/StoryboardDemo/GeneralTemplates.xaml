@@ -6,6 +6,32 @@
         <ResourceDictionary Source="GeneralConverters.xaml"/>
     </ResourceDictionary.MergedDictionaries>
     <!--<DataTemplate DataType="{x:Type local:ModelInstrumentViewModel}">-->
+
+    <DataTemplate x:Key="staticStatusTemplate" DataType="{x:Type local:ModelInstrumentViewModel}">
+        <Image Source="{Binding WorkStatus, Converter={StaticResource workStatusConverter}}" Height="16"/>
+    </DataTemplate>
+    
+    <DataTemplate x:Key="dynamicStatusTemplate" DataType="{x:Type local:ModelInstrumentViewModel}">
+        <local:WindowsProgressRing Foreground="Black" Speed="0:0:2.5" Height="16" Width="16" Items="6" />
+    </DataTemplate>
+    
+    <Style x:Key="workStatusContentStyle" TargetType="{x:Type ContentControl}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding WorkStatus}" Value="Good">
+                <Setter Property="ContentTemplate" Value="{StaticResource staticStatusTemplate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WorkStatus}" Value="Broken">
+                <Setter Property="ContentTemplate" Value="{StaticResource staticStatusTemplate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WorkStatus}" Value="Refreshing">
+                <Setter Property="ContentTemplate" Value="{StaticResource dynamicStatusTemplate}" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding WorkStatus}" Value="Question">
+                <Setter Property="ContentTemplate" Value="{StaticResource staticStatusTemplate}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    
     <DataTemplate x:Key="entireInstrumentView" DataType="{x:Type local:ModelInstrumentViewModel}">
         <Border Style="{StaticResource styleBorderAutoDisplay}">
             <Grid Height="64">
@@ -43,7 +69,7 @@
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="3">
                     <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
                 </StackPanel>
-                <Image Source="{Binding WorkStatus, Converter={StaticResource workStatusConverter}}" Grid.Column="4" Margin="4"/>
+                <ContentControl Content="{Binding}" Style="{StaticResource workStatusContentStyle}" Grid.Column="4" Margin="4" />
             </Grid>
         </Border>
     </DataTemplate>
@@ -83,7 +109,7 @@
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="2">
                     <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
                 </StackPanel>
-                <Image Source="{Binding WorkStatus, Converter={StaticResource workStatusConverter}}" Grid.Column="3" Margin="4"/>
+                <ContentControl Content="{Binding}" Style="{StaticResource workStatusContentStyle}" Grid.Column="3" Margin="4" />
             </Grid>
         </Border>
     </DataTemplate>
