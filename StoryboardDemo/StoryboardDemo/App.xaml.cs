@@ -13,11 +13,17 @@ namespace StoryboardDemo
     /// </summary>
     public partial class App : Application
     {
+        private Bootstrapper mBootstrapper = new Bootstrapper();
+
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            var bootstrapper = new Bootstrapper();
-            bootstrapper.Run();
+            mBootstrapper.Run();
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
         }
     }
 }

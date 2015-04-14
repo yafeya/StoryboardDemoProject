@@ -80,7 +80,7 @@
                             <Image Source="{Binding Icon}"/>
                             <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Center" >
                                 <TextBlock Text="{Binding Name}" />
-                                <ItemsControl ItemsSource="{Binding Addresses}" />
+                                <ItemsControl ItemsSource="{Binding Addresses}" ItemTemplate="{StaticResource statusAddressTemplate}"/>
                             </StackPanel>
                         </Grid>
                     </ContentControl>

@@ -23,11 +23,8 @@ namespace StoryboardDemo
 
         private void RefreshStatus()
         {
-            var modelElementRepository = Container.Resolve<IModelElementRepository>();
-            var elements = modelElementRepository.GetElements();
-            var addresses = elements.Where(e => e is ModelInstrument).Select(i => i as ModelInstrument).SelectMany(instrument => instrument.Addresses);
-            var statusManager = Container.Resolve<IAddressStatusManager>();
-            statusManager.RefreshStatus(addresses);
+            Container.RefreshAddresses();
+            Container.RefreshInstruments();
         }
 
         protected override void InitializeShell()

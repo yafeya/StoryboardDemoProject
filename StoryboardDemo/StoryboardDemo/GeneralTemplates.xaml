@@ -13,7 +13,8 @@
                     <ColumnDefinition Width="32"/>
                     <ColumnDefinition Width="36"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=StickyMode, Converter={StaticResource pinVisibilityConverter}}">
                     <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
@@ -42,6 +43,7 @@
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="3">
                     <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
                 </StackPanel>
+                <Image Source="{Binding WorkStatus, Converter={StaticResource workStatusConverter}}" Grid.Column="4" Margin="4"/>
             </Grid>
         </Border>
     </DataTemplate>
@@ -52,7 +54,8 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="32"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="24"/>
                 </Grid.ColumnDefinitions>
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=StickyMode, Converter={StaticResource pinVisibilityConverter}}">
                     <CheckBox IsChecked="{Binding IsPinned}" Style="{StaticResource checkboxPin}" VerticalAlignment="Top"/>
@@ -80,6 +83,7 @@
                 <StackPanel Visibility="{Binding Source={x:Static local:AppConfigManager.ConfigManager}, Path=RescanMode, Converter={StaticResource rescanCheckVisibilityConverter}}" Grid.Column="2">
                     <CheckBox IsChecked="{Binding IsSelected}" Style="{StaticResource checkboxAutoDisplay}" Margin="5" />
                 </StackPanel>
+                <Image Source="{Binding WorkStatus, Converter={StaticResource workStatusConverter}}" Grid.Column="3" Margin="4"/>
             </Grid>
         </Border>
     </DataTemplate>
@@ -110,7 +114,14 @@
     <DataTemplate DataType="{x:Type local:AddressViewModel}">
         <TextBlock Margin="1" Text="{Binding Address}"/>
     </DataTemplate>
-    
+
+    <DataTemplate x:Key="statusAddressTemplate" DataType="{x:Type local:AddressViewModel}">
+        <StackPanel Orientation="Horizontal">
+            <Image Height="16" Source="{Binding Status, Converter={StaticResource workStatusConverter}}" Margin="4"/>
+            <TextBlock Margin="4" Text="{Binding Address}" />
+        </StackPanel>
+    </DataTemplate>
+
     <DataTemplate DataType="{x:Type local:EnumItemViewModel}">
         <Image Source="{Binding Icon}"/>
     </DataTemplate>

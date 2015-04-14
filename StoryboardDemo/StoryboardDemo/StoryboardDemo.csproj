@@ -74,6 +74,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\UnityContainerExtensions.cs" />
     <Compile Include="Models\StatusManager\AddressStatusManager.cs" />
     <Compile Include="Models\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\IModelElementProvider.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="ViewUtilities\EnumItemViewModel.cs" />
     <Compile Include="ViewUtilities\InstrumentViewMode.cs" />
     <Compile Include="ViewUtilities\VisibilityConverter.cs" />
+    <Compile Include="ViewUtilities\WorkStatusConverter.cs" />
     <Resource Include="GeneralStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -184,6 +186,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\refresh.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\question.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

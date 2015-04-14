@@ -3,4 +3,5 @@
                     xmlns:local="clr-namespace:StoryboardDemo">
     <local:PinVisibilityConverter x:Key="pinVisibilityConverter"/>
     <local:RescanCheckVisibilityConverter x:Key="rescanCheckVisibilityConverter"/>
+    <local:WorkStatusConverter x:Key="workStatusConverter"/>
 </ResourceDictionary>

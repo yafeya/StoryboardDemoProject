@@ -71,6 +71,18 @@ namespace StoryboardDemo
                 }
             }
         }
+        public WorkStatus WorkStatus
+        {
+            get { return ModelInstrument.WorkStatus; }
+            set
+            {
+                if (ModelInstrument.WorkStatus != value)
+                {
+                    ModelInstrument.WorkStatus = value;
+                    OnPropertyChanged("WorkStatus");
+                }
+            }
+        }
 
         public bool IsSelected
         {
@@ -95,6 +107,15 @@ namespace StoryboardDemo
                     OnPropertyChanged("IsPinned");
                 }
             }
+        }
+
+        public void BeginRefresh()
+        {
+            WorkStatus = WorkStatus.Refreshing;
+        }
+        public void EndRefresh()
+        {
+            OnPropertyChanged("WorkStatus");
         }
     }
 }

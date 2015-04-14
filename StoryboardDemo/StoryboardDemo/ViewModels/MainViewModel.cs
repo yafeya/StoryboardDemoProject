@@ -4,6 +4,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Microsoft.Practices.Prism.Commands;
 using Microsoft.Practices.Unity;
@@ -50,17 +52,43 @@ namespace StoryboardDemo
                 {
                     mRescanCommand = new DelegateCommand(() => 
                     {
-                        var statusManager = mContainer.Resolve<IAddressStatusManager>();
-                        var addressList = new List<Address>();
-                        foreach (var instrument in mFlatInstruments)
+                        BeginRefresh();
+                        var task = new Task(() => { });
+                        Action handler = () =>
                         {
-                            var addresses = instrument.Addresses.Select(a => a.GetAddressModel());
-                            addressList.AddRange(addresses);
-                        }
-                        statusManager.RefreshStatus(addressList);
+                            var statusManager = mContainer.Resolve<IAddressStatusManager>();
+                            var addressList = new List<Address>();
+                            foreach (var instrument in mFlatInstruments)
+                            {
+                                var addresses = instrument.Addresses.Select(a => a.GetAddressModel());
+                                addressList.AddRange(addresses);
+                            }
+                            statusManager.RefreshStatus(addressList);
+                            mContainer.RefreshInstruments();
+                            Thread.Sleep(2000);
+                        };
+                        Action<IAsyncResult> callbackHandler = r => EndRefresh();
+                        var callback = new AsyncCallback(callbackHandler);
+                        handler.BeginInvoke(callback, null);
                     });
                 }
                 return mRescanCommand;
+            }
+        }
+
+        private void BeginRefresh()
+        {
+            foreach (var instrument in FlatInstruments)
+            {
+                instrument.BeginRefresh();
+            }
+        }
+
+        private void EndRefresh()
+        {
+            foreach (var instrument in FlatInstruments)
+            {
+                instrument.EndRefresh();
             }
         }
 
