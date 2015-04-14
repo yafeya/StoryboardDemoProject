@@ -65,7 +65,7 @@ namespace StoryboardDemo
                             }
                             statusManager.RefreshStatus(addressList);
                             mContainer.RefreshInstruments();
-                            Thread.Sleep(2000);
+                            Thread.Sleep(1500);
                         };
                         Action<IAsyncResult> callbackHandler = r => EndRefresh();
                         var callback = new AsyncCallback(callbackHandler);
